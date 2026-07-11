@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#19140f">
+  <meta name="description" content="Museo Virtual Virgen de Zapopan - recorrido elegante por cuatro salas.">
+  <title>Museo Virtual | Virgen de Zapopan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="museum-bg" aria-hidden="true"></div>
+
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#entrada" aria-label="Ir a la entrada principal">
+      <span class="brand-mark">M</span>
+      <span>
+        <strong>Museo Virtual</strong>
+        <small>Virgen de Zapopan</small>
+      </span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mainNav">Menú</button>
+    <nav class="main-nav" id="mainNav" aria-label="Menú principal del museo">
+      <a href="#entrada">Principal</a>
+      <a href="#sala-1">Sala 1</a>
+      <a href="#sala-2">Sala 2</a>
+      <a href="#sala-3">Sala 3</a>
+      <a href="#sala-4">Sala 4</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section" id="entrada" data-section="entrada">
+      <div class="hero-content reveal">
+        <p class="eyebrow">Recorrido digital</p>
+        <h1>Museo Virtual<br><span>Virgen de Zapopan</span></h1>
+        <p class="hero-subtitle">Un espacio cálido, elegante y sencillo para recorrer la historia, el arte y las salas del museo desde cualquier dispositivo.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#sala-1">Iniciar recorrido</a>
+          <a class="btn ghost" href="#mapa">Ver mapa del museo</a>
+        </div>
+      </div>
+
+      <div class="hero-gallery reveal" id="heroGallery" aria-label="Obra destacada del museo">
+        <div class="frame large-frame">
+          <img id="heroImage" src="assets/img/principal/portada.jpg" alt="Obra principal del museo" onerror="this.src='assets/img/ui/placeholder.svg'">
+        </div>
+        <div class="plaque">
+          <strong id="heroTitle">Entrada principal</strong>
+          <span id="heroDesc">Explora las cuatro salas del museo virtual.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="map section" id="mapa" data-section="mapa">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Mapa del museo</p>
+        <h2>Entrada principal y cuatro salas</h2>
+        <p>Selecciona una sala para iniciar el recorrido. Cada sala cuenta con menú interno, galería, vista ampliada y movimiento elegante.</p>
+      </div>
+      <div class="room-grid" id="roomGrid"></div>
+    </section>
+
+    <section class="visit-tips section" aria-label="Recomendaciones para visitas">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Experiencia recomendada</p>
+        <h2>Diseñado para una visita agradable</h2>
+      </div>
+      <div class="tips-grid reveal">
+        <article><strong>Ambiente elegante</strong><span>Colores marfil, dorado y negro suave para dar sensación de galería.</span></article>
+        <article><strong>Recorrido claro</strong><span>Menú fijo para moverse a cualquier sala en todo momento.</span></article>
+        <article><strong>Vista de obra</strong><span>Al entrar a cada sala se muestra una obra principal y miniaturas navegables.</span></article>
+        <article><strong>Compatible con celular</strong><span>Diseño responsivo para iPhone, Android, tablet y computadora.</span></article>
+      </div>
+    </section>
+
+    <section class="room section" id="sala-1" data-room="1"></section>
+    <section class="room section" id="sala-2" data-room="2"></section>
+    <section class="room section" id="sala-3" data-room="3"></section>
+    <section class="room section" id="sala-4" data-room="4"></section>
+  </main>
+
+  <aside class="room-menu" id="roomMenu" aria-label="Menú rápido del museo">
+    <a href="#entrada">Principal</a>
+    <a href="#sala-1">Sala 1</a>
+    <a href="#sala-2">Sala 2</a>
+    <a href="#sala-3">Sala 3</a>
+    <a href="#sala-4">Sala 4</a>
+  </aside>
+
+  <dialog class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="closeLightbox" aria-label="Cerrar">×</button>
+    <button class="lightbox-nav prev" id="prevWork" aria-label="Obra anterior">‹</button>
+    <figure>
+      <img id="lightboxImage" src="assets/img/ui/placeholder.svg" alt="Obra seleccionada">
+      <figcaption>
+        <strong id="lightboxTitle">Título de la obra</strong>
+        <span id="lightboxRoom">Sala</span>
+      </figcaption>
+    </figure>
+    <button class="lightbox-nav next" id="nextWork" aria-label="Obra siguiente">›</button>
+  </dialog>
+
+  <footer class="footer">
+    <strong>Museo Virtual Virgen de Zapopan</strong>
+    <span>Proyecto listo para publicar en GitHub Pages.</span>
+  </footer>
+
+  <script src="data/gallery.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
