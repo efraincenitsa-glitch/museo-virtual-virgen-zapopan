@@ -12,12 +12,12 @@ const MUSEO = {
       descripcion: "La geografía del occidente mexicano",
       portada: "assets/img/sala-1/portada.jpg",
       obras: [
-        { numero: 5, titulo: "Imagen 5", archivo: "assets/img/sala-1/imagen-05.jpg" },
+        { numero: 5, titulo: "La Geogradia", archivo: "assets/img/sala-1/imagen-05.jpg" },
         { numero: 6, titulo: "Imagen 6", archivo: "assets/img/sala-1/imagen-06.jpg" },
         { numero: 7, titulo: "Imagen 7", archivo: "assets/img/sala-1/imagen-07.jpg" },
         { numero: 8, titulo: "Imagen 8", archivo: "assets/img/sala-1/imagen-08.jpg" },
         { numero: 9, titulo: "Imagen 9", archivo: "assets/img/sala-1/imagen-09.jpg" },
-        { numero: 10, titulo: "Imagen 10", archivo: "assets/img/sala-1/imagen-10.jpg" },
+        { numero: 10, titulo: "Los Pueblos", archivo: "assets/img/sala-1/imagen-10.jpg" },
         { numero: 11, titulo: "Imagen 11", archivo: "assets/img/sala-1/imagen-11.jpg" },
         { numero: 12, titulo: "Imagen 12", archivo: "assets/img/sala-1/imagen-12.jpg" }
       ]
