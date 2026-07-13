@@ -12,7 +12,7 @@ const MUSEO = {
       descripcion: "La geografía del occidente mexicano",
       portada: "assets/img/sala-1/portada.jpg",
       obras: [
-        { numero: 5, titulo: "La Geografía", archivo: "assets/img/sala-1/imagen-05.jpg" },
+        { numero: 5, titulo: "La geografía del occidente mexicano", archivo: "assets/img/sala-1/imagen-05.jpg" },
         { numero: 6, titulo: "Imagen 6", archivo: "assets/img/sala-1/imagen-06.jpg" },
         { numero: 7, titulo: "Imagen 7", archivo: "assets/img/sala-1/imagen-07.jpg" },
         { numero: 8, titulo: "Imagen 8", archivo: "assets/img/sala-1/imagen-08.jpg" },
