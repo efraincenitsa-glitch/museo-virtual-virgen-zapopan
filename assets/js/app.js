@@ -94,18 +94,43 @@
     if(open) openLightbox(roomIndex, workIndex);
   }
 
-  function openLightbox(roomIndex, workIndex){
-    const sala = MUSEO.salas[roomIndex];
-    const obra = sala.obras[workIndex];
-    currentRoomIndex = roomIndex;
-    currentWorkIndex = workIndex;
-    lightboxImage.src = obra.archivo;
-    lightboxImage.alt = `${obra.titulo} - ${sala.tema}`;
-    lightboxImage.onerror = () => imageFallback(lightboxImage);
-    lightboxTitle.textContent = obra.titulo;
-    lightboxRoom.textContent = `${sala.titulo} · ${sala.tema}`;
-    if(typeof lightbox.showModal === 'function') lightbox.showModal();
+function openLightbox(roomIndex, workIndex){
+
+  const sala = MUSEO.salas[roomIndex];
+
+  const obra = sala.obras[workIndex];
+
+currentRoomIndex = roomIndex;
+
+currentWorkIndex = workIndex;
+
+lightboxImage.classList.remove('zoomed');
+
+/* Reiniciar posición de scroll */
+lightbox.scrollTop = 0;
+lightbox.scrollLeft = 0;
+
+lightboxImage.src = obra.archivo;
+
+  lightboxImage.alt =
+    `${obra.titulo} - ${sala.tema}`;
+
+  lightboxImage.onerror = () =>
+    imageFallback(lightboxImage);
+
+  lightboxTitle.textContent =
+    obra.titulo;
+
+  lightboxRoom.textContent =
+    `${sala.titulo} · ${sala.tema}`;
+
+  if(typeof lightbox.showModal === 'function'){
+
+    lightbox.showModal();
+
   }
+
+}
 
   function moveLightbox(step){
     const sala = MUSEO.salas[currentRoomIndex];
@@ -158,34 +183,125 @@
     targets.forEach(el => io.observe(el));
   }
 
-  function bindEvents(){
-    qs('#menuToggle').addEventListener('click', () => {
-      const nav = qs('#mainNav');
-      nav.classList.toggle('open');
-      qs('#menuToggle').setAttribute('aria-expanded', nav.classList.contains('open'));
-    });
-    document.addEventListener('click', e => {
-      const card = e.target.closest('.work-card');
-      if(card) selectWork(Number(card.dataset.roomIndex), Number(card.dataset.workIndex), true);
-      if(e.target.classList.contains('prev-room-work')) moveRoomWork(e.target.closest('.room'), -1);
-      if(e.target.classList.contains('next-room-work')) moveRoomWork(e.target.closest('.room'), 1);
-      if(e.target.classList.contains('open-current')){
-        const section = e.target.closest('.room');
-        const roomIndex = MUSEO.salas.findIndex(s => s.id === Number(section.dataset.room));
-        openLightbox(roomIndex, Number(section.dataset.currentWork || 0));
-      }
-    });
-    qs('#closeLightbox').addEventListener('click', () => lightbox.close());
-    qs('#prevWork').addEventListener('click', () => moveLightbox(-1));
-    qs('#nextWork').addEventListener('click', () => moveLightbox(1));
-    lightbox.addEventListener('click', e => { if(e.target === lightbox) lightbox.close(); });
-    document.addEventListener('keydown', e => {
-      if(!lightbox.open) return;
-      if(e.key === 'ArrowLeft') moveLightbox(-1);
-      if(e.key === 'ArrowRight') moveLightbox(1);
-      if(e.key === 'Escape') lightbox.close();
-    });
-  }
+function bindEvents(){
+
+  qs('#menuToggle').addEventListener('click', () => {
+
+    const nav = qs('#mainNav');
+
+    nav.classList.toggle('open');
+
+    qs('#menuToggle').setAttribute(
+      'aria-expanded',
+      nav.classList.contains('open')
+    );
+
+  });
+
+  document.addEventListener('click', e => {
+
+    const card = e.target.closest('.work-card');
+
+    if(card){
+      selectWork(
+        Number(card.dataset.roomIndex),
+        Number(card.dataset.workIndex),
+        true
+      );
+    }
+
+    if(e.target.classList.contains('prev-room-work')){
+      moveRoomWork(
+        e.target.closest('.room'),
+        -1
+      );
+    }
+
+    if(e.target.classList.contains('next-room-work')){
+      moveRoomWork(
+        e.target.closest('.room'),
+        1
+      );
+    }
+
+    if(e.target.classList.contains('open-current')){
+
+      const section = e.target.closest('.room');
+
+      const roomIndex =
+        MUSEO.salas.findIndex(
+          s => s.id === Number(section.dataset.room)
+        );
+
+      openLightbox(
+        roomIndex,
+        Number(section.dataset.currentWork || 0)
+      );
+    }
+
+  });
+
+  qs('#closeLightbox').addEventListener('click', () => {
+    lightbox.close();
+  });
+
+  qs('#prevWork').addEventListener('click', () => {
+    moveLightbox(-1);
+  });
+
+  qs('#nextWork').addEventListener('click', () => {
+    moveLightbox(1);
+  });
+
+  /* ===========================
+     ZOOM DE LA IMAGEN
+     =========================== */
+
+  lightboxImage.addEventListener('click', () => {
+
+    lightboxImage.classList.toggle('zoomed');
+
+  });
+
+  /* ===========================
+     CERRAR LIGHTBOX
+     =========================== */
+
+  lightbox.addEventListener('click', e => {
+
+    if(e.target === lightbox){
+
+      lightbox.close();
+
+    }
+
+  });
+
+  document.addEventListener('keydown', e => {
+
+    if(!lightbox.open) return;
+
+    if(e.key === 'ArrowLeft'){
+
+      moveLightbox(-1);
+
+    }
+
+    if(e.key === 'ArrowRight'){
+
+      moveLightbox(1);
+
+    }
+
+    if(e.key === 'Escape'){
+
+      lightbox.close();
+
+    }
+
+  });
+
+}
 
   buildRoomCards();
   buildRooms();
