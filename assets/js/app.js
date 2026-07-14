@@ -175,44 +175,53 @@ function observeActiveNav(){
   const navLinks =
     qsa('.main-nav a, .room-menu a');
 
-  const targets = [
-    'entrada',
-    'sala-1',
-    'sala-2',
-    'sala-3',
-    'sala-4'
-  ].map(id => qs(`#${id}`));
+  const sections = [
+    qs('#entrada'),
+    qs('#sala-1'),
+    qs('#sala-2'),
+    qs('#sala-3'),
+    qs('#sala-4')
+  ];
 
-  const io = new IntersectionObserver(entries => {
+  function updateActiveMenu(){
 
-    entries.forEach(entry => {
+    let currentSection = sections[0];
 
-      if(!entry.isIntersecting) return;
+    const scrollPosition =
+      window.scrollY + 180;
 
-      navLinks.forEach(link => {
+    sections.forEach(section => {
 
-        link.classList.toggle(
-          'active',
-          link.getAttribute('href') ===
-          `#${entry.target.id}`
-        );
-
-      });
+      if(
+        section &&
+        section.offsetTop <= scrollPosition
+      ){
+        currentSection = section;
+      }
 
     });
 
-  },{
-    threshold:0.15,
-    rootMargin:'-15% 0px -55% 0px'
-  });
+    navLinks.forEach(link => {
 
-  targets.forEach(section => {
+      const href =
+        link.getAttribute('href');
 
-    if(section){
-      io.observe(section);
-    }
+      link.classList.toggle(
+        'active',
+        href === `#${currentSection.id}`
+      );
 
-  });
+    });
+
+  }
+
+  window.addEventListener(
+    'scroll',
+    updateActiveMenu,
+    { passive:true }
+  );
+
+  updateActiveMenu();
 
 }
 
