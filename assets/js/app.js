@@ -170,18 +170,51 @@ lightboxImage.src = obra.archivo;
     qsa('.reveal').forEach(el => io.observe(el));
   }
 
-  function observeActiveNav(){
-    const navLinks = qsa('.main-nav a, .room-menu a');
-    const targets = ['entrada','sala-1','sala-2','sala-3','sala-4'].map(id => qs(`#${id}`));
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${entry.target.id}`));
-        }
+function observeActiveNav(){
+
+  const navLinks =
+    qsa('.main-nav a, .room-menu a');
+
+  const targets = [
+    'entrada',
+    'sala-1',
+    'sala-2',
+    'sala-3',
+    'sala-4'
+  ].map(id => qs(`#${id}`));
+
+  const io = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+      if(!entry.isIntersecting) return;
+
+      navLinks.forEach(link => {
+
+        link.classList.toggle(
+          'active',
+          link.getAttribute('href') ===
+          `#${entry.target.id}`
+        );
+
       });
-    }, {threshold:.48});
-    targets.forEach(el => io.observe(el));
-  }
+
+    });
+
+  },{
+    threshold:0.15,
+    rootMargin:'-15% 0px -55% 0px'
+  });
+
+  targets.forEach(section => {
+
+    if(section){
+      io.observe(section);
+    }
+
+  });
+
+}
 
 function bindEvents(){
 
