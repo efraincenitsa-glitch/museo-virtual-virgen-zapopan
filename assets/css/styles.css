@@ -220,11 +220,12 @@ h3{
 
 .frame img{
   display:block;
-  width:100%;
-  height:auto;
-  max-height:62vh;
+  width:auto;
+  height:62vh;
+  max-width:100%;
   object-fit:contain;
   background:#18120b;
+  margin:0 auto;
 }
 
 
@@ -382,8 +383,12 @@ h3{
   top:105px
 }
 
-.featured 
-.frame img{max-height:58vh
+.featured .frame img{
+  height:62vh;
+  max-height:none;
+  width:auto;
+  max-width:100%;
+  margin:0 auto;
 }
 
 .featured-controls{display:flex;
