@@ -221,15 +221,19 @@ h3{
 .frame img{
   display:block;
   width:100%;
-  height:auto;
-  max-height:62vh;
-  object-fit:contain;
+  height:62vh;
+  object-fit:cover;
   background:#18120b;
 }
 
 
+.large-frame{
+  background:#18120b;
+}
+
 .large-frame img{
-  aspect-ratio:4/5
+  aspect-ratio:4/5;
+  background:#18120b;
 }
 
 .plaque{
@@ -589,4 +593,4 @@ h3{
 }@media (prefers-reduced-motion:reduce)
 {html{scroll-behavior:auto}*,*:before,*
 :after{animation:none!important;transition:none!important}
-   }
+}
