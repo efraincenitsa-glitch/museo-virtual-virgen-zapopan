@@ -224,8 +224,9 @@ h3{
   height:auto;
   max-height:62vh;
   object-fit:contain;
-  background:#fdfaf1
+  background:#18120b;
 }
+
 
 .large-frame img{
   aspect-ratio:4/5
