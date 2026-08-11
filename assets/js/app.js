@@ -19,7 +19,7 @@
   function buildRoomCards(){
     roomGrid.innerHTML = MUSEO.salas.map(sala => `
       <a class="room-card reveal" href="#sala-${sala.id}">
-        <div class="thumb"><img src="${sala.portada}" alt="${sala.titulo} - ${sala.tema}" loading="lazy" onerror="this.src='${fallback}'"></div>
+        <div class="thumb"><img src="${sala.portada}" alt="${sala.titulo} - ${sala.tema}" onerror="this.src='${fallback}'"></div>
         <strong>${sala.titulo}</strong>
         <span>${sala.tema}</span>
       </a>
@@ -55,7 +55,7 @@
             <div class="gallery-grid reveal">
               ${sala.obras.map((obra, workIndex) => `
                 <button class="work-card" type="button" data-room-index="${roomIndex}" data-work-index="${workIndex}">
-                  <span class="mini-frame"><img src="${obra.archivo}" alt="${obra.titulo}" loading="lazy" onerror="this.src='${fallback}'"></span>
+                  <span class="mini-frame"><img src="${obra.archivo}" alt="${obra.titulo}" onerror="this.src='${fallback}'"></span>
                   <span>${obra.titulo}</span>
                 </button>
               `).join('')}
@@ -342,39 +342,6 @@ function bindEvents(){
     }
 
   });
-
-  /* ===========================
-     NAVEGACIÓN POR SWIPE (MÓVIL)
-     =========================== */
-
-  let touchStartX = 0;
-  let touchStartY = 0;
-
-  lightbox.addEventListener('touchstart', e => {
-
-    if(lightboxImage.classList.contains('zoomed')) return;
-
-    touchStartX = e.changedTouches[0].clientX;
-    touchStartY = e.changedTouches[0].clientY;
-
-  }, { passive:true });
-
-  lightbox.addEventListener('touchend', e => {
-
-    if(lightboxImage.classList.contains('zoomed')) return;
-
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    const dy = e.changedTouches[0].clientY - touchStartY;
-
-    if(Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
-
-    if(dx < 0){
-      moveLightbox(1);
-    }else{
-      moveLightbox(-1);
-    }
-
-  }, { passive:true });
 
 }
 

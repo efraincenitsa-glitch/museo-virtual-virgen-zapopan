@@ -599,9 +599,7 @@ h3{
 .room-card .thumb{height:360px}
 .gallery-grid{grid-template-columns:repeat(2,1fr)}
 .work-card img{height:128px}h1{font-size:44px}
-.lightbox-nav{width:40px;height:40px;font-size:32px}
-.lightbox-nav.prev{left:6px}
-.lightbox-nav.next{right:6px}
+.lightbox-nav{display:none}
 }@media (prefers-reduced-motion:reduce)
 {html{scroll-behavior:auto}*,*:before,*
 :after{animation:none!important;transition:none!important}
